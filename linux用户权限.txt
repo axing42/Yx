@@ -1,0 +1,137 @@
+用户：/etc/passwd
+第一列 天蓝色 用户名称
+第二列 粉色 密码占位符
+第三列 红色 用户id 和 用户组id
+用户id 默认500 之前都是系统保留的 如果想自行设定可使用 -u
+第四列 蓝色 备注 -c 参数指定 在登录名称显示
+第五烈 绿色 用户家目录地址 -d 参数指定
+第六列 黄色 使用shell命令的方式 nologin不允许登录 常见于需要用户执行软件，但是不需要登录
+
+增加
+语法：useradd
+-u 用户id
+-g 用户组 gid
+-c 备注
+-d 指定用户家目录
+例子：
+useradd -u 114 -g 500 -c diyigeyonghu -d /home/114 用户名
+
+修改
+usermod
+-u 
+-g
+-c
+-d
+usermod -u501 -d/home/axing 用户名
+
+删除
+语法： userdel -r 用户名
+-r 删除用户家目录与邮件池
+
+用户组：/etc/group
+增加
+groupadd -g 用户组id 用户名
+
+修改
+groupmod -g 用户组id -n 新的用户组名 要修改的用户组名
+
+删除
+groupdel 用户组名 删除前先删除用户不然报错
+
+修改用户密码
+passwd 用户名
+
+切换用户
+su 用户名
+查看当前用户:whoami
+查看真是身份:who am i
+配合exit退出
+
+权限管理：文件权限与文件所有者
+权限类型：r读 w写 x执行
+第一列 - 表示占位符 普通文件 d 表示文件夹
+第2-4列 文件所有者 档案拥有者的权限
+5-7列 文件所有者所在用户组 档案所属群组的权限
+8-10 其他用户 其他人对次档案的权限
+
+修改权限
+
+字符形式设置
+u user
+g group
+o other
+ugo方式
+语法:chmod u+权限,g+权限,o+权限
+chmod u+x 文件目录文件名
+chmod u+x,g+x 文件
+取消权限: chmod u-x 文件
+
+数组形式修改
+r 4
+w 2
+x 1
+权限777:所有用户具有所有权限
+权限664:文件所有者和文件所有组的用户，具有读写权限,其他用户具有只读权限
+权限665:文件所有者和文件所有组的用户，具有读写权限，其他用户具有读 执行权限
+//自己拥有读写执行 其他用户只有只读权限
+例子:chmod 744 ./ls,sh
+
+文件权限
+语法：chown 用户.用户组 文件路径名称
+例子：chown axing.axing /root
+递归修改权限:chmod or chown -R 777 文件名称
+
+系统常用命令
+grep搜索命令
+grep 搜索内容 搜索文件
+结果是带有搜索内容的具体行数
+
+du -h
+显示当前文件大小
+
+date
+系统时间
+df -lh
+查看硬盘
+size 大小
+Used 已经使用
+Avail 剩余可用
+Use% 使用率
+Mounted on 挂载点 u盘、外设设备，访问需要先进行挂载
+
+free -m
+内存使用大小
+swap 交换空间使用 虚拟内存 把硬盘一部分空间 作为内存使用
+
+管道 pipe
+| 左边的参数作为右边的参数进行使用
+ls | grep ls
+
+find
+查找文件路径
+find 查找的文件路径 -name 文件名
+find / -name pwd
+
+man
+查看命令帮助手册 unix系统就有的
+
+网络相关配置
+网卡配置文件：/etx/sysconfig/network-script
+vim ifcfg-eth0
+
+DEVICE=eth0
+  2 TYPE=Ethernet //网卡驱动
+  3 UUID=57ac2ea0-e8b4-4a96-9813-b65632b71abe
+  4 ONBOOT=yes //自动连接
+  5 NM_CONTROLLED=yes
+  6 BOOTPROTO=dhcp //动态获取ip
+  7 DEFROUTE=yes
+  8 IPV4_FAILURE_FATAL=yes
+  9 IPV6INIT=no
+ 10 NAME="System eth0" //网卡名称
+ 11 HWADDR=00:0C:29:D3:B8:FC //mac地址 网卡唯一标识
+ 12 PEERDNS=yes
+ 13 PEERROUTES=yes
+
+网卡管理命令
+service network start|stop|status|restart

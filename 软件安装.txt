@@ -1,0 +1,34 @@
+查询已安装的软件包
+rpm -qa | grep 软件包名
+
+卸载软件包
+rpm -e 卸载软件的完整名称
+
+安装软件包:安装必须在当前软件包路径
+rpm -ivh 软件名称
+i:表示安装 install
+v:显示进度条
+h:进度条以‘#’号显示
+
+yum安装软件
+yum -y install 安装软件名称
+-y 确认安装不提示
+
+关闭防火墙
+他叫：iptables
+service iptables stop|start|restart|status
+
+解压缩包
+.gz gzip tar zxvf
+.bz bzip tar jxvf
+
+查看命令帮助：tar --help | grep z
+
+语法：tar -zxvf 文件名
+
+查看软件进程
+
+ps -A | grep 软件进程
+
+文件修改防火墙开启端口
+vim /etc/syscomfig/iptables

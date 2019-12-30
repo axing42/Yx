@@ -85,3 +85,5 @@ vim +6 passwd
 
 打开指定搜索的关键词：
 vim +/keyword 文件路径
+yy 复制当前行
+p 粘贴
