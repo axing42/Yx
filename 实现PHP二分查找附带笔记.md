@@ -13,6 +13,49 @@
 
 ```PHP
 <?php
-echo 'hello world！';
+/*
+* time: 2020/1/6 23:43
+* copyright:Yx
+*/
+
+// 预先定义一个要查找的数组:
+$arr = [0,2,4,5,7,8,11,13,46];
+// 要查找的数
+$num = 5;
+
+// 封装一个函数(数组,查询的数,开启位置,结束位置)
+// 位置的意义：根据一会变量新的赋值，位置将发生相应改变
+// 也就是决定是左边还是右边的一半
+// 默认从下标0开始，数组的个数-1结束
+$res = search($arr, $s, 0, count($arr)-1); //-1：计算数组的个数起始值为1
+var_dump($res);
+function search($arr, $s, $start, $end)
+{
+    // 死循环类似递归，作者我没有用到递归是因为有点绕。。哈哈哈
+    // 注意看跳出循环的关键点,开始位置大于起始位置的条件：
+    // 由下面两个连续elseif决定
+    for ($i=1;$i>0;$i++) {
+        
+        if ($start > $end) {
+            return false;
+        }
+        $mid = floor(($start + $end)/2); //取得中间值下标从而求出中间值
+        $mid_value = $arr[$mid];
+
+        if ($mid_value == $s) {
+            return true;
+        } 
+        // 当中间值大于查询值：将从数组一半的右边进行查询,开始值不变，结束值为中间值下标类似指针往前移动一个，不过这里直观上来说是往后
+        elseif ($mid_value > $s) {
+            // $start = $start;
+            $end = $mid-1;
+        } elseif ($mid_value < $s) {
+            // $end = $end;
+            $start = $mid+1;
+        }
+    }
+}
+
+
 ?>
 ```
