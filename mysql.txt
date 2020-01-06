@@ -81,3 +81,11 @@ ELSE
 SELECT 'N1小于10！';
 END IF;
 END;
+
+//当文章表被删除，下面的评论也跟着删除
+CREATE TRIGGER dele
+AFTER DELETE
+ON zh_article for EACH ROW
+BEGIN
+DELETE FROM zh_user_comments WHERE article_id = old.id;
+END;
