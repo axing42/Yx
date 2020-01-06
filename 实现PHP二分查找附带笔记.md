@@ -27,9 +27,9 @@ $num = 5;
 // 位置的意义：根据一会变量新的赋值，位置将发生相应改变
 // 也就是决定是左边还是右边的一半
 // 默认从下标0开始，数组的个数-1结束
-$res = search($arr, $s, 0, count($arr)-1); //-1：计算数组的个数起始值为1
+$res = search($arr, $sum, 0, count($arr)-1); //-1：计算数组的个数起始值为1
 var_dump($res);
-function search($arr, $s, $start, $end)
+function search($arr, $sum, $start, $end)
 {
     // 死循环类似递归，作者我没有用到递归是因为有点绕。。哈哈哈
     // 注意看跳出循环的关键点,开始位置大于起始位置的条件：
@@ -42,14 +42,19 @@ function search($arr, $s, $start, $end)
         $mid = floor(($start + $end)/2); //取得中间值下标从而求出中间值
         $mid_value = $arr[$mid];
 
-        if ($mid_value == $s) {
+        if ($mid_value == $sum) {
             return true;
         } 
-        // 当中间值大于查询值：将从数组一半的右边进行查询,开始值不变，结束值为中间值下标类似指针往前移动一个，不过这里直观上来说是往后
-        elseif ($mid_value > $s) {
+        // 当中间值大于查询值：将从数组一半的右边进行查询,开始值不变，
+        // 结束值为中间值下标类似指针往前移动一个，不过这里直观上来说是往后,当循环取到中间值只有一个时：触发上面的if判断
+        // $开始位置>$结束位置,循环结束查找失败
+        // 中间值等于查询值,循环结束查询成功
+        // 不会出现第三种情况且没有死循环，循环的最大意义在于：
+        // 将查询范围不断缩小直到true/false
+        elseif ($mid_value > $sum) {
             // $start = $start;
             $end = $mid-1;
-        } elseif ($mid_value < $s) {
+        } elseif ($mid_value < $sum) {
             // $end = $end;
             $start = $mid+1;
         }
