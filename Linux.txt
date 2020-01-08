@@ -87,3 +87,6 @@ vim +6 passwd
 vim +/keyword 文件路径
 yy 复制当前行
 p 粘贴
+
+set：查看当前所有变量
+set | more : 分页查看 空格换页
