@@ -31,7 +31,7 @@ select * from TableName where name like '%蛋蛋%';
 select * from TableName where name like '%蛋蛋%' and id = 1 and num=95;
 -- NOT like取反，不包含
 select * from TableName where name not like '%猫%';
--- CONCAT:字段连接,将两个同表字组合在一起
+-- CONCAT:字段连接,将两个同表字段组合在一起
 select CONCAT(字段一，字段二) from tableName;
 SELECT concat(sname,leirong) FROM `class` ;
 -- OR:满足一个条件就成功,满足的条件都返回
@@ -70,4 +70,40 @@ insert into 表名 set 字段名 = 值,字段2 = 值2 ;
 insert into 表名 (字段名1字段名2) values(值1，值二),(值1，值2);
 
 --
+```
+
+# mysql 字符集的 utf8_general_ci:
+
+### 它不区分大小写字母，对查询排序没有影响
+
+## msyql 字符串函数
+
+```sql
+-- left 1:从左取一个字符
+SELECT LEFT(sname,1) FROM sta;
+-- right 1:从右取一个字符
+SELECT RIGHT(sname,1) FROM sta;
+-- mid:从第一个字符取俩字符
+SELECT MID(sname,1,2) FROM sta;
+-- 从第2个字符开始取所有
+SELECT MID(sname,2) FROM sta;
+
+-- substr:从第一个取两个字符
+SELECT SUBSTR(sname ,1,2) FROM sta;
+-- CHAR_LENGTH:获取字段字符串的长度
+SELECT CHAR_LENGTH(sname) FROM sta;
+-- concat: 字符串拼接
+SELECT concat('编号:',id) as id , concat('姓名:',sname) FROM sta;
+
+-- if:判断字段最大值是否为400大于了就显示文字
+select sname,if(click > 400,'我最大',click) FROM sta;
+
+-- set:添加某个字段时，set相当于多选项
+ALTER TABLE sta ADD flag SET('推荐','热门','置顶','图文');
+-- set更新时，类似枚举类型，更新1就表示推荐，2就代表热门
+UPDATE sta SET flag = 1 WHERE id = 20;
+-- set插入多条也只能为设置好的四个选项字符不能为数字
+insert INTO sta(sname,flag) VALUES('dandan','热门,推荐');
+-- 查询是只能FIND_IN_SET,查询值不能为数字只能为字符
+SELECT * FROM sta WHERE FIND_IN_SET('推荐',flag);
 ```
