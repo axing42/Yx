@@ -1,13 +1,19 @@
-# git的入门操作
+# git 的入门操作
+
 **在当前目录下创建一个本地仓库**
 
 git init
+
+**初始配置**
+
+git config --global user.email "1@qq.com"
+git config --global user.name "dandan"
 
 **创建一个文件**
 
 touch
 
-**使用vim编辑一个文件**
+**使用 vim 编辑一个文件**
 
 vim test.php
 
@@ -27,4 +33,8 @@ git status
 
 git branch
 
-**push到远程仓库**
+**查看日志**
+
+git log
+
+**push 到远程仓库**
