@@ -10,97 +10,97 @@
 
 ### list、set、zset、hash 等数据结构的存储
 
-# 字符串形式的设置与获取
+### 字符串形式的设置与获取
 
-# key 类型：
+### key 类型：
 
-key _:返回所有的键名
-?:匹配一个字符
-_: 匹配任意个(包含 0 个)字符
-[]:匹配括号中任一个字符，可以使用'-'表示范围
-randomkey:返回随机的键名,而不是值
+**key _:返回所有的键名**
+**?:匹配一个字符**
+**_: 匹配任意个(包含 0 个)字符**
+**[]:匹配括号中任一个字符，可以使用'-'表示范围**
+**randomkey:返回随机的键名,而不是值**
 
-exists key:检查 key 是否存在
-exists name:查询结果成功返回 1，失败返回 0
+**exists key:检查 key 是否存在**
+**exists name:查询结果成功返回 1，失败返回 0**
 
-expire: 设置过期时间
-expire 键名 过期时间(单位/秒)
-expire name 30
+**expire: 设置过期时间**
+**expire 键名 过期时间(单位/秒)**
+**expire name 30**
 
-ttl:查看过期时间
-ttl 键名
-ttl name(返回也是一个整数)
+**ttl:查看过期时间**
+**ttl 键名**
+**ttl name(返回也是一个整数)**
 
-pexpire:设置过期时间(单位毫秒)
-pexpire 键名(key) 过期时间
-pexpire name 20000(20 秒)
+**pexpire:设置过期时间(单位毫秒)**
+**pexpire 键名(key) 过期时间**
+**pexpire name 20000(20 秒)**
 
-pttl:以毫秒形式查看过期时间
-pttl key
-pttl name
+**pttl:以毫秒形式查看过期时间**
+**pttl key**
+**pttl name**
 
-type :查看键值对的类型
-type key
-type name
+**type :查看键值对的类型**
+**type key**
+**type name**
 
-rename :修改 key 的名称(重命名)
-rename key newKey
-rename name newName
+**rename :修改 key 的名称(重命名)**
+**rename key newKey**
+**rename name newName**
 
-persist:在 key-value 有效期内设置，让他取消过期时间
-persist key
-persist name(如果 key 过期就不能取消)
+**persist:在 key-value 有效期内设置，让他取消过期时间**
+**persist key**
+**persist name(如果 key 过期就不能取消)**
 
-del:删除一个键值对
-del key
-del name
+**del:删除一个键值对**
+**del key**
+**del name**
 
-# 字符串类型
+### 字符串类型
 
 **他们都是字符串类型**
 
-获取
-set 键名 值
-set name dandan
+**获取**
+**set 键名 值**
+**set name dandan**
 
-setnx:设置一个不存在(存在将设置不了)的键值对
-setnx key value
-setnx name dandan
+**setnx:设置一个不存在(存在将设置不了)的键值对**
+**setnx key value**
+**setnx name dandan**
 
-设置
-get 键名
-get name
+**设置**
+**get 键名**
+**get name**
 
-mset:设置多个键值对
-mset key value key2 value2 key3 value3
-mset name dan age 18 email 1142170887@qq.com
+**mset:设置多个键值对**
+**mset key value key2 value2 key3 value3**
+**mset name dan age 18 email 1142170887@qq.com**
 
-mget:获得多个键值对
-mget key1 key2 ...
-mget name age email
+**mget:获得多个键值对**
+**mget key1 key2 ...**
+**mget name age email**
 
-msetnx :设置不存在的多个键值对
-msetnx key value key2 value2(获取同上用 mget)
+**msetnx :设置不存在的多个键值对**
+**msetnx key value key2 value2(获取同上用 mget)**
 
-setrange:从索引位置替换或覆盖
-setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)
-setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)
+**setrange:从索引位置替换或覆盖**
+**setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)**
+**setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)**
 
-getrange :截取字符串
-getrange key start(开始位置) end(结束位置) end
-getrange name 0 2(从 0 开始取两个)
+**getrange :截取字符串**
+**getrange key start(开始位置) end(结束位置) end**
+**getrange name 0 2(从 0 开始取两个)**
 
-getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值
-getset oldKey newValue
-getset name lisi
+**getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值**
+**getset oldKey newValue**
+**getset name lisi**
 
-setex:设置指定 key 的值，同时设置过期时间 单位秒
-setex key seconds value
-setex name 30 dandan(为 name 键设置 30 秒的过期时间)
+**setex:设置指定 key 的值，同时设置过期时间 单位秒**
+**setex key seconds value**
+**setex name 30 dandan(为 name 键设置 30 秒的过期时间)**
 
-psetex:设置指定 key 的值，同时设置过期时间 单位毫秒
-setex key millseconds value
-setex name 3000 dandan(为 name 键设置 3 秒的过期时间)
+**psetex:设置指定 key 的值，同时设置过期时间 单位毫秒**
+**setex key millseconds value**
+**setex name 3000 dandan(为 name 键设置 3 秒的过期时间)**
 
 append key value
 append:往存在的字符串键值对后面追加值
@@ -310,4 +310,22 @@ sunionstore destination key1 key2
 sunionstore:将并集保存到 destination中
 sunionstore test php1 php2
 
-sdiff
+sdiff key1 key2
+sdiff: 计算差集,确定前后关系，保留的是前面集合的元素
+sdiff php1 php2
+
+sdiffstore destination key1 key2
+sdiffstore；将差集保存到destination中
+sdiffstore test php1 php2
+
+srandmember key
+srandmember :返回集合中随机一个元素
+srandmember php1
+
+# sorted set String不可重复类型
+
+**不同的每个成员，都会关联一个double类型的分数**
+
+**通过分数进行成员排序，有序集合的成员是唯一的，但分数score可以重复**
+
+****
