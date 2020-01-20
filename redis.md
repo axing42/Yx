@@ -19,6 +19,7 @@
 > **?:匹配一个字符**
 
 > **_: 匹配任意个(包含 0 个)字符**
+
 >**[]:匹配括号中任一个字符，可以使用'-'表示范围**
 >**randomkey:返回随机的键名,而不是值**
 
@@ -30,109 +31,109 @@
 >**expire name 30**
 
 >**ttl:查看过期时间**
-**ttl 键名**
-**ttl name(返回也是一个整数)**
+>****ttl 键名**
+>**ttl name(返回也是一个整数)**
 
-**pexpire:设置过期时间(单位毫秒)**
-**pexpire 键名(key) 过期时间**
-**pexpire name 20000(20 秒)**
+>**pexpire:设置过期时间(单位毫秒)**
+>**pexpire 键名(key) 过期时间**
+>**pexpire name 20000(20 秒)**
 
-**pttl:以毫秒形式查看过期时间**
-**pttl key**
+>**pttl:以毫秒形式查看过期时间**
+>**pttl key**
 **pttl name**
 
-**type :查看键值对的类型**
-**type key**
-**type name**
+>**type :查看键值对的类型**
+>**type key**
+>**type name**
 
-**rename :修改 key 的名称(重命名)**
-**rename key newKey**
-**rename name newName**
+>**rename :修改 key 的名称(重命名)**
+>**rename key newKey**
+>**rename name newName**
 
-**persist:在 key-value 有效期内设置，让他取消过期时间**
-**persist key**
-**persist name(如果 key 过期就不能取消)**
+>**persist:在 key-value 有效期内设置，让他取消过期时间**
+>**persist key**
+>**persist name(如果 key 过期就不能取消)**
 
-**del:删除一个键值对**
-**del key**
-**del name**
+>**del:删除一个键值对**
+>**del key**
+>**del name**
 
-### 字符串类型
+### `字符串类型`
 
-**他们都是字符串类型**
+>**他们都是字符串类型**
 
-**获取**
-**set 键名 值**
-**set name dandan**
+>**获取**
+>**set 键名 值**
+>**set name dandan**
 
-**setnx:设置一个不存在(存在将设置不了)的键值对**
-**setnx key value**
-**setnx name dandan**
+>**setnx:设置一个不存在(存在将设置不了)的键值对**
+>**setnx key value**
+>**setnx name dandan**
 
-**设置**
-**get 键名**
-**get name**
+>**设置**
+>**get 键名**
+>**get name**
 
-**mset:设置多个键值对**
-**mset key value key2 value2 key3 value3**
-**mset name dan age 18 email 1142170887@qq.com**
+>**mset:设置多个键值对**
+>**mset key value key2 value2 key3 value3**
+>**mset name dan age 18 email 1142170887@qq.com**
 
-**mget:获得多个键值对**
-**mget key1 key2 ...**
-**mget name age email**
+>**mget:获得多个键值对**
+>**mget key1 key2 ...**
+>**mget name age email**
 
 **msetnx :设置不存在的多个键值对**
-**msetnx key value key2 value2(获取同上用 mget)**
+>**msetnx key value key2 value2(获取同上用 mget)**
 
-**setrange:从索引位置替换或覆盖**
-**setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)**
-**setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)**
+>**setrange:从索引位置替换或覆盖**
+>**setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)**
+>**setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)**
 
-**getrange :截取字符串**
-**getrange key start(开始位置) end(结束位置) end**
-**getrange name 0 2(从 0 开始取两个)**
+>**getrange :截取字符串**
+>**getrange key start(开始位置) end(结束位置) end**
+>**getrange name 0 2(从 0 开始取两个)**
 
-**getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值**
-**getset oldKey newValue**
-**getset name lisi**
+>**getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值**
+>**getset oldKey newValue**
+>**getset name lisi**
 
-**setex:设置指定 key 的值，同时设置过期时间 单位秒**
-**setex key seconds value**
-**setex name 30 dandan(为 name 键设置 30 秒的过期时间)**
+>**setex:设置指定 key 的值，同时设置过期时间 单位秒**
+>**setex key seconds value**
+>**setex name 30 dandan(为 name 键设置 30 秒的过期时间)**
 
-**psetex:设置指定 key 的值，同时设置过期时间 单位毫秒**
-**setex key millseconds value**
-**setex name 3000 dandan(为 name 键设置 3 秒的过期时间)**
+>**psetex:设置指定 key 的值，同时设置过期时间 单位毫秒**
+>**setex key millseconds value**
+>**setex name 3000 dandan(为 name 键设置 3 秒的过期时间)**
 
-append key value
-append:往存在的字符串键值对后面追加值
-append name hello(在原有数据上的后面追加)
+>**append key value**
+>**append:往存在的字符串键值对后面追加值**
+>**append name hello(在原有数据上的后面追加)**
 
-incr key
-incr:自身加一，必须是整型
-incr age
+>**incr key**
+>**incr:自身加一，必须是整型**
+>**incr age**
 
-incrby key increment
-incrby:将 key 所存储的值加上指定增量值(增加多少)
-incrby age 50(给 age 加 50)
+>**incrby key increment**
+>**incrby:将 key 所存储的值加上指定增量值(增加多少)**
+>**incrby age 50(给 age 加 50)**
 
-decr key
-decr:自减一
-decr age
+>**decr key**
+>**decr:自减一**
+>**decr age**
 
-decrby key decrement
-decrby:指定减去多少值
-decrby age 20(减去 20)
+>**decrby key decrement**
+>**decrby:指定减去多少值**
+>**decrby age 20(减去 20)**
 
-strlen key
-strlen:返回字符串长度
-strlen name
+>**strlen key**
+>**strlen:返回字符串长度**
+>**strlen name**
 
-incrbyfloat key increment
-incrbyfloat:增加浮点数，小数点后面(set 应该不能做到增加浮点数?)
-incrbyfloat price 5.99
+>**incrbyfloat key increment**
+>**incrbyfloat:增加浮点数，小数点后面(set 应该不能做到增加浮点数?)**
+>**incrbyfloat price 5.99**
 
-# list 类型
+# `list 类型`
 
 **Redis 列表是字符串列表，按照插入顺序排序，可以从左(前)、右(后)添加元素**
 
@@ -198,7 +199,7 @@ count<0:从表尾开始向表头搜索，移除与 value 相等的元素,数量�
 count=0:移除列表中与 value 相等的值，根据值移除
 lrem tea 0 manggo(删除所有包含 manggo 得值)
 
-# hash 类型
+# `hash 类型`
 
 **Redis hash 是一个 string 类型 field 和 value 的隐射表,hash 特别适合储存对象，类型关联数组**
 
@@ -260,7 +261,7 @@ hdel key field field2
 hdel :删除一个或多个哈希表字段
 hdel userinfo name age phpversion
 
-# set 类型
+# `set 类型`
 
 **Redis的Set是String类型的无序集合，集合成员是唯一的，意味着不能重复**
 
