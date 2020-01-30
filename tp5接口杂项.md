@@ -1,5 +1,7 @@
 ```php
 /***********实例化接口助手函数*************/
+// tp5.1模型更新数据注意事项：更新条件的where一定要写在更新条件的前面!!!
+
 $request = Request::instance();
 
 $request = Request::instance();

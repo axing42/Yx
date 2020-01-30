@@ -14,124 +14,73 @@
 
 ### `key 类型`：
 
->#### `key _:返回所有的键名`
+> #### `key _:返回所有的键名`
 
 > **?:匹配一个字符**
 
-> **_: 匹配任意个(包含 0 个)字符**
+> **\_: 匹配任意个(包含 0 个)字符**
 
->**[]:匹配括号中任一个字符，可以使用'-'表示范围**
->**randomkey:返回随机的键名,而不是值**
+> **[]:匹配括号中任一个字符，可以使用'-'表示范围** >**randomkey:返回随机的键名,而不是值**
 
->**exists key:检查 key 是否存在**
->**exists name:查询结果成功返回 1，失败返回 0**
+> **exists key:检查 key 是否存在** >**exists name:查询结果成功返回 1，失败返回 0**
 
->**expire: 设置过期时间**
->**expire 键名 过期时间(单位/秒)**
->**expire name 30**
+> **expire: 设置过期时间** >**expire 键名 过期时间(单位/秒)** >**expire name 30**
 
->**ttl:查看过期时间**
->****ttl 键名**
->**ttl name(返回也是一个整数)**
+> **ttl:查看过期时间** \***\*ttl 键名** >**ttl name(返回也是一个整数)**
 
->**pexpire:设置过期时间(单位毫秒)**
->**pexpire 键名(key) 过期时间**
->**pexpire name 20000(20 秒)**
+> **pexpire:设置过期时间(单位毫秒)** >**pexpire 键名(key) 过期时间** >**pexpire name 20000(20 秒)**
 
->**pttl:以毫秒形式查看过期时间**
->**pttl key**
-**pttl name**
+> **pttl:以毫秒形式查看过期时间** >**pttl key** > **pttl name**
 
->**type :查看键值对的类型**
->**type key**
->**type name**
+> **type :查看键值对的类型** >**type key** >**type name**
 
->**rename :修改 key 的名称(重命名)**
->**rename key newKey**
->**rename name newName**
+> **rename :修改 key 的名称(重命名)** >**rename key newKey** >**rename name newName**
 
->**persist:在 key-value 有效期内设置，让他取消过期时间**
->**persist key**
->**persist name(如果 key 过期就不能取消)**
+> **persist:在 key-value 有效期内设置，让他取消过期时间** >**persist key** >**persist name(如果 key 过期就不能取消)**
 
->**del:删除一个键值对**
->**del key**
->**del name**
+> **del:删除一个键值对** >**del key** >**del name**
 
 ### `字符串类型`
 
->**他们都是字符串类型**
+> **他们都是字符串类型**
 
->**获取**
->**set 键名 值**
->**set name dandan**
+> **获取** >**set 键名 值** >**set name dandan**
 
->**setnx:设置一个不存在(存在将设置不了)的键值对**
->**setnx key value**
->**setnx name dandan**
+> **setnx:设置一个不存在(存在将设置不了)的键值对** >**setnx key value** >**setnx name dandan**
 
->**设置**
->**get 键名**
->**get name**
+> **设置** >**get 键名** >**get name**
 
->**mset:设置多个键值对**
->**mset key value key2 value2 key3 value3**
->**mset name dan age 18 email 1142170887@qq.com**
+> **mset:设置多个键值对** >**mset key value key2 value2 key3 value3** >**mset name dan age 18 email 1142170887@qq.com**
 
->**mget:获得多个键值对**
->**mget key1 key2 ...**
->**mget name age email**
+> **mget:获得多个键值对** >**mget key1 key2 ...** >**mget name age email**
 
 **msetnx :设置不存在的多个键值对**
->**msetnx key value key2 value2(获取同上用 mget)**
 
->**setrange:从索引位置替换或覆盖**
->**setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)**
->**setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)**
+> **msetnx key value key2 value2(获取同上用 mget)**
 
->**getrange :截取字符串**
->**getrange key start(开始位置) end(结束位置) end**
->**getrange name 0 2(从 0 开始取两个)**
+> **setrange:从索引位置替换或覆盖** >**setrange key 偏移位(字符串类型索引起始位置为 0) value(要替换或覆盖的值)** >**setrange name 0 lidan(从第 0 个位置替换覆盖原有的值)**
 
->**getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值**
->**getset oldKey newValue**
->**getset name lisi**
+> **getrange :截取字符串** >**getrange key start(开始位置) end(结束位置) end** >**getrange name 0 2(从 0 开始取两个)**
 
->**setex:设置指定 key 的值，同时设置过期时间 单位秒**
->**setex key seconds value**
->**setex name 30 dandan(为 name 键设置 30 秒的过期时间)**
+> **getset:给旧值赋值一个新的值(删除旧值赋新值)，更改后结果返回旧的值** >**getset oldKey newValue** >**getset name lisi**
 
->**psetex:设置指定 key 的值，同时设置过期时间 单位毫秒**
->**setex key millseconds value**
->**setex name 3000 dandan(为 name 键设置 3 秒的过期时间)**
+> **setex:设置指定 key 的值，同时设置过期时间 单位秒** >**setex key seconds value** >**setex name 30 dandan(为 name 键设置 30 秒的过期时间)**
 
->**append key value**
->**append:往存在的字符串键值对后面追加值**
->**append name hello(在原有数据上的后面追加)**
+> **psetex:设置指定 key 的值，同时设置过期时间 单位毫秒** >**setex key millseconds value** >**setex name 3000 dandan(为 name 键设置 3 秒的过期时间)**
 
->**incr key**
->**incr:自身加一，必须是整型**
->**incr age**
+> **append key value** >**append:往存在的字符串键值对后面追加值** >**append name hello(在原有数据上的后面追加)**
 
->**incrby key increment**
->**incrby:将 key 所存储的值加上指定增量值(增加多少)**
->**incrby age 50(给 age 加 50)**
+> **incr key** >**incr:自身加一，必须是整型** >**incr age**
 
->**decr key**
->**decr:自减一**
->**decr age**
+> **incrby key increment** >**incrby:将 key 所存储的值加上指定增量值(增加多少)** >**incrby age 50(给 age 加 50)**
 
->**decrby key decrement**
->**decrby:指定减去多少值**
->**decrby age 20(减去 20)**
+> **decr key** >**decr:自减一** >**decr age**
 
->**strlen key**
->**strlen:返回字符串长度**
->**strlen name**
+> **decrby key decrement** >**decrby:指定减去多少值** >**decrby age 20(减去 20)**
 
->**incrbyfloat key increment**
->**incrbyfloat:增加浮点数，小数点后面(set 应该不能做到增加浮点数?)**
->**incrbyfloat price 5.99**
+> **strlen key** >**strlen:返回字符串长度** >**strlen name**
+
+> **incrbyfloat key increment** >**incrbyfloat:增加浮点数，小数点后面(set 应该不能做到增加浮点数?)** >**incrbyfloat price 5.99**
 
 # `list 类型`
 
@@ -211,11 +160,11 @@ hset userinfo username dandan
 hset userinfo phpversion 7.0
 key 类似于:
 ['Userinfo'=>[
-    'name'=>'dandan'
+'name'=>'dandan'
 ]];
 
 hget key field value
-hget:查看某个field字段的值
+hget:查看某个 field 字段的值
 hget userinfo phpversion
 
 hmset key field value field2 value2
@@ -231,7 +180,7 @@ hsetnx :字段不存在才可以设置
 hsetnx userinfo fruit(水果) banana
 
 hkeys key
-hkeys:返回指定哈希表所有字段(key键)
+hkeys:返回指定哈希表所有字段(key 键)
 hkeys userinfo
 
 hvals key
@@ -239,7 +188,7 @@ hvals:返回指定哈希表所有值
 hvals userinfo
 
 hgetall key
-hgetall :获取指定key的所有字段和值
+hgetall :获取指定 key 的所有字段和值
 hgetall userinfo
 
 hlen key
@@ -251,10 +200,10 @@ hexists:查看指定哈希表的指定字段是否存在
 hexists userinfo dan(查看蛋蛋这个字段是否存在)
 
 hincrby key field increment
-hincrby: 为哈希表key中的field字段增加整数
+hincrby: 为哈希表 key 中的 field 字段增加整数
 
 hincrbyfloat key field increment
-hincrbyfloat :为哈希表key中指定字段field的浮点数增加指定浮点数量
+hincrbyfloat :为哈希表 key 中指定字段 field 的浮点数增加指定浮点数量
 hincrbufloat userinfo age 20
 
 hdel key field field2
@@ -263,10 +212,10 @@ hdel userinfo name age phpversion
 
 # `set 类型`
 
-**Redis的Set是String类型的无序集合，集合成员是唯一的，意味着不能重复**
+**Redis 的 Set 是 String 类型的无序集合，集合成员是唯一的，意味着不能重复**
 
-sadd key  member1 member2 member3
-sadd:添加，将member添加到集合key中,一组可以添加多个但不能添加多个组
+sadd key member1 member2 member3
+sadd:添加，将 member 添加到集合 key 中,一组可以添加多个但不能添加多个组
 sadd php1 xinxin1 xinxin2 xinxin3
 
 smembers key
@@ -274,7 +223,7 @@ smember:查看
 smembers php1
 
 srem key member
-srem:移除集合中的member元素
+srem:移除集合中的 member 元素
 srem php1 xinxin1
 
 smembers key
@@ -282,15 +231,15 @@ smembers:返回集合中的所有成员
 smembers php1
 
 sismember key member
-sismember :判断member元素是否存在于key中
+sismember :判断 member 元素是否存在于 key 中
 sismember php1 xinxin2
 
 scard key
-scard；返回集合key的基数(集合元素中的数量,个数？)
+scard；返回集合 key 的基数(集合元素中的数量,个数？)
 scard php1
 
 smove soure destination member
-smove；将member元素从soure集合移动到destination集合中
+smove；将 member 元素从 soure 集合移动到 destination 集合中
 smove php1 php2 xinxin1
 
 spop key
@@ -302,7 +251,7 @@ sinter:返回两个集合中相同的数据(交集)
 sinter php1 php2
 
 sinterstore destination key1 key2
-sinterstore:将俩个交集保存到desination中
+sinterstore:将俩个交集保存到 desination 中
 sinterstore php3 php1 php2
 
 sunion key1 key2
@@ -310,7 +259,7 @@ sunion:返回并集(待理解)
 sunion php1 php2
 
 sunionstore destination key1 key2
-sunionstore:将并集保存到 destination中
+sunionstore:将并集保存到 destination 中
 sunionstore test php1 php2
 
 sdiff key1 key2
@@ -318,17 +267,95 @@ sdiff: 计算差集,确定前后关系，保留的是前面集合的元素
 sdiff php1 php2
 
 sdiffstore destination key1 key2
-sdiffstore；将差集保存到destination中
+sdiffstore；将差集保存到 destination 中
 sdiffstore test php1 php2
 
 srandmember key
 srandmember :返回集合中随机一个元素
 srandmember php1
 
-# sorted set String不可重复类型
+# sorted set String 不可重复类型
 
-**不同的每个成员，都会关联一个double类型的分数**
+**不同的每个成员，都会关联一个 double 类型的分数**
 
-**通过分数进行成员排序，有序集合的成员是唯一的，但分数score可以重复**
+**通过分数进行成员排序，有序集合的成员是唯一的，但分数 score 可以重复**
 
-****
+**主要应用：排行榜应用，电影，热门商品的排行**
+
+zadd key score member
+zadd:添加，将 member 元素及 score 值加入到有序集 key 中
+zadd sorted1 1.1 php
+zadd sorted1 1.2 php2
+
+zrem key member
+zrem:移除有序集 key 中的 member
+zrem sorted php
+
+zrange key start stop [withscores]
+zrevrange key start stop [withscores]//区别是：从大到小排序
+返回有序集 key 中，指定区间内的成员
+成员按 score 值递增(从小到大)来排序
+下标 0 表示有续集第一个成员，1 表示第二个
+-1 表示最后一个成员 -2 表示倒数第二个
+withscore 选项：来让成员和它 score 值一并返回,显示排序分数就写不显示就不写
+zrange sorted 0 -1(返回所有集)
+zrange sorted 0 -1 withscores(返回带分数)
+
+zcard key
+zcard:返回成员数量
+zcard sorted
+
+zcount key min max
+zcount:返回有序集 key 中，score 值在 min-max 之间(默认包括 score 值等于 min 或 max)的成员
+返回的是在 1.5-2 区间的成员个数
+zcount sorted 1.5 2
+
+zscore key member
+zscore ：返回有续集 key，member 中的 score 值
+zscore sorted php
+
+Zrangebyscore key min max [withscore][limit offset count]
+返回所有 score 值介于 min max 之间的成员，按照 score 递增（从小到大）排序
+withscore 选项：来让成员和它 score 值一并返回,显示排序分数就写不显示就不写
+limit 指定返回结果的区间及数量
+min max 可以使-inf +inf:表示最低和最高值
+
+zrank key member
+返回有续集 key 成员 member 的排名，按从小到大排列
+zrank sorted php
+
+zincrby key increment member
+为 key 的成员 member 增加数量
+zincrby sorted 50 php
+
+# HyperLogLog
+
+## 基数统计，不记录数据而仅仅记录不重复的数据量
+
+pfadd key element [element]
+pfadd:添加指定元素到 hyperloglog
+pfadd color red green blue
+
+pfcount key
+pfcount:查看,返回:不重复的个数
+pfcount color
+
+pfmerge destkey:保存合并的 loglog sourcekey[sourcekey]:被合并
+将多个 hyperloglog 合并为一个
+pfmerge coloAll color1 color2
+
+### 数据持久化
+
+### 先执行 save、在执行 bgsave:将数据保存到磁盘上
+
+# Redis 事务
+
+MULTI : 标记一个事务块的开始。
+
+EXEC : 执行所有事务块内的命令。
+
+discaro : 取消事务
+
+watch key1 key2 [key]: 监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。
+
+unwatch: 取消 watch 命令对 key 的监视
