@@ -40,10 +40,20 @@ limit 2; //总的查询数取两条
 DELETE b FROM bj as b
 LEFT JOIN class as c
 ON c.class_id=b.id
-WHERE c.class_id is NULL
-;
+WHERE c.class_id is NULL;
+
+-- 关联更新
+a表(id,sex,par,c1,c2)
+b表(id,sex,par,c1,c2)
+-- 第一种
+-- 将b表的c1,2更新到a表中并且b表的年龄大于50岁
+update a,b set a.c1=b.c1,a.c2=b.c2 where a.id=b.id and b.age>50; 
+-- 第二种
+update a inner join b on a.id=b.id
+set a.c1=b.c1,a.c2=b.c2 where b.age>50;
 ```
-# mysql高级
+
+# mysql 高级
 
 ```php
     //    验证规则并过滤数据
@@ -67,7 +77,7 @@ WHERE c.class_id is NULL
 -- 监听事件 insert update dalete
 -- new：每insert一下都会出现新的一行，new的就能监听新增的数据
 
-CREATE TRIGGER tt 
+CREATE TRIGGER tt
 AFTER INSERT
 ON ord FOR EACH ROW
 BEGIN
@@ -132,7 +142,44 @@ SELECT 'N1小于10！';
 END IF;
 END;
 
--- 当文章表被删除，下面的评论也跟着删除
+
+-- 函数：存储过程可以有也可以没有返回值，而函数必须只有一个返回值
+-- 参数格式：参数名 参数类型
+-- 函数体结束一定要有return，没有就报错
+-- 函数的查看：show create function 函数名
+-- 删除：drop function 函数名
+-- 语法：
+create function functionName(参数1,参数2) returns 返回类型
+begin
+    sql语句
+end
+-- 调用：select 函数名（参数）
+
+-- 无参数的函数例子：查询表中数据总和(多少条数据)并用变量sum返回
+create function func() returns int
+begin
+    declare sum int default 0; -- 定义变量
+    select count(*) into sum   -- into: 将查询结果保存到变量sum
+    from banji;
+    return sum;
+end;
+select func();
+
+-- 带参数函数:输入用户名并查询tp.user表中学生的零花钱,有就返回零花钱没有返回str提示信息
+create function funcPrice(uname varchar(10)) returns int
+begin
+    set @var:=0;
+    set @str:='没有查询到数据！';
+    select price into @var 
+    from user where `name` = uname;
+    if @var = 0 then
+    return @str;
+    else return @var;
+    end if;
+end;
+select funcPrice('阿鑫');
+
+-- 触发器案例： 当文章表被删除，下面的评论也跟着删除
 CREATE TRIGGER dele
 AFTER DELETE
 ON zh_article for EACH ROW

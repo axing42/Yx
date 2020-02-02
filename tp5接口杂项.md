@@ -1,9 +1,23 @@
-```php
+```js
 /***********实例化接口助手函数*************/
 // tp5.1模型更新数据注意事项：更新条件的where一定要写在更新条件的前面!!!
+// 在使用layer弹窗时，如果使用ajax异步请求数据，再使用弹窗将不能同步接受到后端返回的信息
+// 应该是异步的结果，他们是同时进行的，而弹窗确实在等待执行所以只能手动设置提示信息 如：
 
-$request = Request::instance();
-
+if (data.status == 1) {
+                layer.msg('注册成功！正在跳转...', {
+                icon: 6,
+                time: 1000
+                });
+                window.location.href = "{:url('index/index/index')}";
+                } else {
+                layer.msg('注册失败！请检查...', {
+                icon: 5,
+                time: 1000
+        });
+}
+```
+```php
 $request = Request::instance();
 echo '请求方法是：'. $request->method().'<br/>';
 echo '请求的地址是：' .$request->ip().'<br/>';
@@ -84,4 +98,17 @@ $recount = Db::table('product')
 ->limit($cc)
 ->order('create_time desc')->field(['id','from','img_id'],true)
 ->select();
+
+
+<!--  需要继承时使用：  -->
+<!--  {extend name="public/base"} name填当前公共模板的文件路径  -->
+<!--  使用占位符内容:  -->
+<!--  {block name='test'} 写你要替换的内容,注意name里面的值引号要对应不能一个单一个双 {/block}  -->
+<!--  并且使用某个块标签必须使name的值对应  -->
+<!--  块级标签也可以使用标签语法include加载文件  -->
+<!--  如果某些块级元素的内容想要在继承里面使用：  -->
+{block}
+{__block__}
+{/block}
+
 ```
