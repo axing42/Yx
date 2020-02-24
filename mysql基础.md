@@ -7,6 +7,20 @@ select * from 表名 where id = is not null;
 select ifnull('字段名','给定的默认值') from 表名;
 SELECT IFNULL(`name`,'无知') FROM goods;
 
+-- distinct:去掉查询结果的重复行(两行数据完全一样的)
+-- 去重必须指定字段不然无效
+select distinct 字段1 字段2 from tableName;
+
+SELECT DISTINCT class_name FROM `class`;
+
+select 的or与and
+or:是或者(||)的关系，满足一个条件就出结果
+and:是并且(&&)关系,条件必须满足才出结果
+
+-- 通过命令行导入sql文件
+source 然后拖动文件到命令行 回车
+
+
 -- 创建表并复制表tableNametaget结构
 create table 新表名 like 要copy的表
 -- 创建表并复制数据与结构

@@ -76,6 +76,8 @@ set a.c1=b.c1,a.c2=b.c2 where b.age>50;
 -- 监听动作 after before
 -- 监听事件 insert update dalete
 -- new：每insert一下都会出现新的一行，new的就能监听新增的数据
+-- 查看触发器：show triggers; 删除： drop trigger trigger_name;
+
 
 CREATE TRIGGER tt
 AFTER INSERT
@@ -185,5 +187,14 @@ AFTER DELETE
 ON zh_article for EACH ROW
 BEGIN
 DELETE FROM zh_user_comments WHERE article_id = old.id;
+END;
+
+删除文章下所有点赞数,监听的文章表，不要给点赞表监听
+old: 监听的zh_article的最后被删除的id
+CREATE TRIGGER article_give
+AFTER DELETE
+ON zh_article FOR EACH ROW
+BEGIN
+DELETE FROM zh_give WHERE zh_give.art_id=old.id;
 END;
 ```

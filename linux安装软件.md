@@ -130,3 +130,17 @@ vim /etc/syscomfig/iptables
 ```
 安装tp5指定版本
 composer create-project topthink/think 要放的目录名称 5.0.* --prefer-dist
+
+## 关于php在linux设置操作快捷命令
+
+cd ~/.bash_profile
+加入以下命令 yy(复制当前行) p(粘贴到下一行)
+alias php=php的结对路径
+
+
+
+
+
+
+
+
