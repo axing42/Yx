@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+/*
+	@authors axing2050
+	@time 2020/4/1 18:47
+*/
+
 // 定义存放哈希表值得结构体
 type Emp struct {
 	Id   int
@@ -34,19 +39,19 @@ func (e *EmpLink) Insert(emp *Emp) {
 		return
 	}
 	// 如果不是空链表
-	for cur !=nil{
+	for cur != nil {
 		// 判断进行顺序插入
-			if cur.Id > emp.Id{
-				break
-			}
-			pre = cur
-			cur = cur.Next
+		if cur.Id > emp.Id {
+			break
+		}
+		pre = cur
+		cur = cur.Next
 	}
 	// 空指针,插入时只能顺序插入(从小到大插入,从大到小插入就不行 待解决!!!)
 	//fmt.Println("pre : ->", pre)
 	//fmt.Println("cur : ->", cur)
 	// 表示代表插入的数要往两个数中间插
-	if pre !=nil{
+	if pre != nil {
 		pre.Next = emp
 		emp.Next = cur
 		e.lens++
@@ -97,9 +102,9 @@ func (e *EmpLink) remove(id int) {
 				e.lens--
 				fmt.Println("倒数最后一个删除成功!", cur)
 				return
-			}else if cur2==nil {
+			} else if cur2 == nil {
 				// 当有多个值 并且要删除第一个时:
-				fmt.Println("删除了第一个且他后面还有值:",cur.Next)
+				fmt.Println("删除了第一个且他后面还有值:", cur.Next)
 				e.Head = cur.Next
 				cur = nil
 				e.lens--
@@ -108,7 +113,7 @@ func (e *EmpLink) remove(id int) {
 				// 当删除中间任意一个时
 				cur.Next = cur.Next.Next
 				e.lens--
-				fmt.Println("cur2 :",cur2)
+				fmt.Println("cur2 :", cur2)
 				fmt.Println("删除成功", cur)
 				return
 			}
@@ -195,7 +200,7 @@ func main() {
 		switch key {
 		case "i":
 			fmt.Println("请输入Id,Name")
-			_, err = fmt.Scanln(&id,&name)
+			_, err = fmt.Scanln(&id, &name)
 			// 创建一个哈希表需要的结构体并存放
 			emp := &Emp{
 				Id:   id,
